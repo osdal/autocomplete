@@ -1,17 +1,12 @@
 ﻿var base = ["vghkf", "dthdt", "gigi"];
 
-var suggestion = $('<div></div>'),
-    inputData = $("#autocomplete").val();
+var suggestion = $('<div></div>');
 
-    console.log($("#autocomplete").val());
 
-$('<div></div>').text(inputData);
+$('#autocomplete').keyup(function() {
+			suggestion.text($('#autocomplete').val())
+		});
+
 
 $("#autocomplete").after(suggestion);
 
-$( "input" )
-  .keyup(function() {
-    var value = $( this ).val();
-    $( "p" ).text( value );
-  })
-  .keyup();
