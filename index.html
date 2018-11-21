@@ -2,10 +2,21 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="CSS/style.css">
+	<title>Autocomplete</title>
 </head>
 <body>
-	<input type="text" name="country" id="autocomplete" value="Колбаса"/>
+	<h2>Autocomplete</h2>
+
+	<p>Ввести название страны:</p>
+
+	<form autocomplete="off" action="/action_page.php">
+		  <div class="autocomplete" style="width:300px;">
+		    <input id="myInput" type="text" name="myCountry" placeholder="Введите название страны">
+		  </div>
+		  <input type="submit">
+	</form>
 
 	<script src="js/jquery-3.3.1.js"></script>
 	<script src="js/script.js"></script>
