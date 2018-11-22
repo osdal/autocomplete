@@ -3,19 +3,39 @@
   значеие поля ввода и массив возможных значений*/
   var currentFocus;
   /*функция запускается, когда ничмнают что-либо вводить в поле ввода*/
-  $('#myInput').on('input', function() {
+  $('#myInput').on('input', function(event) {
   	var a, b, i, val = this.value; /*получаем значение поля ввода*/
-  	
-      closeAllLists();/*функция, которая убирает все открытые поля автодополнения кроме того, котрое указано в аргументе*/
-      function closeAllLists(elem) {
-	    var x = $(".autocomplete-items");
-	    for (let i = 0; i < x.length; i++) {
-	      if (elem != x[i] && elem != inp) {
-	        x[i].parent().children(x[i]).remove();
-	      }
-	    }
-	  }
-  	 console.log(val);
+  	var arr = ['aaabbb', 'aacc', 'aadd', 'bbcc'];
+	  	/*функция, которая убирает все открытые поля автодополнения кроме того, котрое указано в аргументе*/
+	      closeAllLists();
+		      function closeAllLists(elem) {
+			    var x = $(".autocomplete-items");
+			    for (let i = 0; i < x.length; i++) {
+			      if (elem != x[i] && elem != inp) {
+			        x[i].parent().children(x[i]).remove();
+			      }
+			    }
+			  }
+	  if (!val) { return false;} /*Проверяем пустой ли инпут*/
+	  currentFocus = -1;
+	  /*создаем DIV который будет содержать результаты автодополнения*/
+	  a = '<div></div>';
+	  $(a).attr("id", this.id + "autocomplete-list");
+	  $(a).attr("class", "autocomplete-items");
+  	  /*добавляем созданный DIV к блоку, который содержит поле ввода
+      */
+  	  $(this).parent().append(a);
+  	 /*перебираем базу в которой производится поиск*/
+  	 for (i = 0; i < arr.length; i++) {
+  	 	// проверяем начинаются ли строки в массиве с тех же символов, котрые введены в поле ввода
+  	 	if (arr[i].substr(0, val.length) == val.toUpperCase()) {
+  	 		/*для каждого совпадения создаем div:*/
+  	 		b = '<div></div>';
+  	 		/*совпадающие буквы делаем жирными*/
+  	 		b.html("<strong>" + arr[i].substr(0, val.length) + "</strong>");
+  	 	}	b += b.html(arr[i].substr(val.length));
+  	 }
+  	 console.log(val.length);
   });
  
 })
