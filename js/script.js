@@ -1,11 +1,13 @@
-﻿$(function autocomplete(inp, arr) {
+﻿var arr = ['aaabbb', 'aacc', 'aadd', 'bbcc'];
+
+function autocomplete(inp, arr) {
 	/*функция принимает два аргумента,
   значеие поля ввода и массив возможных значений*/
   var currentFocus;
   /*функция запускается, когда ничмнают что-либо вводить в поле ввода*/
   $('#myInput').on('input', function(event) {
-  	var a, b, i, val = this.value; /*получаем значение поля ввода*/
-  	var arr = ['aaabbb', 'aacc', 'aadd', 'bbcc'];
+  	var a, b, val = this.value; /*получаем значение поля ввода*/
+  	
 	  	/*функция, которая убирает все открытые поля автодополнения кроме того, котрое указано в аргументе*/
 	      closeAllLists();
 		      function closeAllLists(elem) {
@@ -24,6 +26,7 @@
 	  $(a).attr("class", "autocomplete-items");
   	  /*добавляем созданный DIV к блоку, который содержит поле ввода
       */
+       console.log(a);
   	  $(this).parent().append(a);
   	 /*перебираем базу в которой производится поиск*/
   	 for (i = 0; i < arr.length; i++) {
@@ -31,14 +34,31 @@
   	 	if (arr[i].substr(0, val.length) == val.toUpperCase()) {
   	 		/*для каждого совпадения создаем div:*/
   	 		b = '<div></div>';
-  	 		/*совпадающие буквы делаем жирными*/
+  	 		// совпадающие буквы делаем жирными
   	 		b.html("<strong>" + arr[i].substr(0, val.length) + "</strong>");
-  	 	}	b += b.html(arr[i].substr(val.length));
+  	 		b += b.html(arr[i].substr(val.length));
+  	 		// добавляем к этому div поле input  которое будет содержать массив выбранных значений
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          b.on("click", function(event) {
+              // отправляем значение поля ввода в параметр основной функции
+              inp.value = val;
+              // закрываем все открытые списки автодополнений
+              closeAllLists();
+          });
+          a.append(b);
+  	 	}	
   	 }
-  	 console.log(val.length);
+  	
   });
  
-})
+}
+
+autocomplete($("myInput"), arr);
+
+var abc = '<p></p>';
+
+
+console.log(div1);
 	
 
 
