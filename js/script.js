@@ -9,7 +9,7 @@ function autocomplete(inp, arr) {
   	var a, b, val = this.value; /*получаем значение поля ввода*/
   	
 	  	/*функция, которая убирает все открытые поля автодополнения кроме того, котрое указано в аргументе*/
-	      closeAllLists();
+	      /*closeAllLists();
 		      function closeAllLists(elem) {
 			    var x = $(".autocomplete-items");
 			    for (let i = 0; i < x.length; i++) {
@@ -17,11 +17,11 @@ function autocomplete(inp, arr) {
 			        x[i].parent().children(x[i]).remove();
 			      }
 			    }
-			  }
+			  }*/
 	  if (!val) { return false;} /*Проверяем пустой ли инпут*/
 	  currentFocus = -1;
 	  /*создаем DIV который будет содержать результаты автодополнения*/
-	  a = '<div></div>';
+	  a = document.createElement('div');
 	  $(a).attr("id", this.id + "autocomplete-list");
 	  $(a).attr("class", "autocomplete-items");
   	  /*добавляем созданный DIV к блоку, который содержит поле ввода
@@ -33,7 +33,7 @@ function autocomplete(inp, arr) {
   	 	// проверяем начинаются ли строки в массиве с тех же символов, котрые введены в поле ввода
   	 	if (arr[i].substr(0, val.length) == val.toUpperCase()) {
   	 		/*для каждого совпадения создаем div:*/
-  	 		b = '<div></div>';
+  	 		b = document.createElement('div');
   	 		// совпадающие буквы делаем жирными
   	 		b.html("<strong>" + arr[i].substr(0, val.length) + "</strong>");
   	 		b += b.html(arr[i].substr(val.length));
@@ -55,10 +55,7 @@ function autocomplete(inp, arr) {
 
 autocomplete($("myInput"), arr);
 
-var abc = '<p></p>';
 
-
-console.log(div1);
 	
 
 
