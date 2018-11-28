@@ -26,10 +26,11 @@ function autocomplete(inp, arr) {
 	  $(a).attr("class", "autocomplete-items");
   	  /*добавляем созданный DIV к блоку, который содержит поле ввода
       */
-       console.log(a);
+      
   	  $(this).parent().append(a);
   	 /*перебираем базу в которой производится поиск*/
   	 for (i = 0; i < arr.length; i++) {
+      console.log(arr[i]);
   	 	// проверяем начинаются ли строки в массиве с тех же символов, котрые введены в поле ввода
   	 	if (arr[i].substr(0, val.length) == val.toUpperCase()) {
   	 		/*для каждого совпадения создаем div:*/
